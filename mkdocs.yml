@@ -1,6 +1,7 @@
 site_name: Some mur mur things
 site_url: https://wu0up.github.io/blog_material/
 nav:
+  - Home: ./index.md
   - polaris - A Safety-focused LLM Constellation Architecture for Healthcare : ./20240829.md
   - A Survey on Large Language Model based Autonomous Agents: ./20240902.md
 theme:
