@@ -1,0 +1,664 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://wu0up.github.io/blog_material/20240902/">
+      
+      
+        <link rel="prev" href="../20240829/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
+    
+    
+      
+        <title>A Survey on Large Language Model based Autonomous Agents - Some mur mur things</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.06209087.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a-survey-on-large-language-model-based-autonomous-agents" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Some mur mur things" class="md-header__button md-logo" aria-label="Some mur mur things" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Some mur mur things
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A Survey on Large Language Model based Autonomous Agents
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Some mur mur things" class="md-nav__button md-logo" aria-label="Some mur mur things" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Some mur mur things
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20240829/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    polaris - A Safety-focused LLM Constellation Architecture for Healthcare
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    A Survey on Large Language Model based Autonomous Agents
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    A Survey on Large Language Model based Autonomous Agents
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-profiling-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 該選用哪一種Profiling Module的方法？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 如何有效管理和調用代理的記憶與歷史數據？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-without-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、無反饋規劃 (Planning without Feedback)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-with-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、有反饋規劃 (Planning with Feedback)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      結論
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-profiling-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 該選用哪一種Profiling Module的方法？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 如何有效管理和調用代理的記憶與歷史數據？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-without-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、無反饋規劃 (Planning without Feedback)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-with-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、有反饋規劃 (Planning with Feedback)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      結論
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="a-survey-on-large-language-model-based-autonomous-agents">[論文分析] A Survey on Large Language Model based Autonomous Agents</h1>
+<p><strong>設計LLM代理架構：如何支援工作流程、管理記憶與評估效能</strong></p>
+<p>為什麼讀這篇論文：目前正在開發平台，因此選擇這篇論文，想了解代理開發的框架</p>
+<p>針對自動化代理平台設計，本篇提供統一框架：
+ - 輪廓模組（Profiling Module）：設定代理角色的基本屬性（例如年齡、性別、職業等）。
+ - 記憶模組（Memory Module）：短期和長期記憶幫助代理記錄並使用過去的行為來規劃未來。
+ - 規劃模組（Planning Module）：代理根據任務分解目標，規劃步驟並調整行動。
+ - 行動模組（Action Module）：將規劃轉化為具體的行為並與環境互動。</p>
+<p><img alt="agent_architecture" src="../images/0902/agent_architecture.png" /></p>
+<p>將會針對Profiling Module和Planning Module進行筆記；</p>
+<h3 id="1-profiling-module">1. 該選用哪一種Profiling Module的方法？</h3>
+<p>針對此篇paper介紹的Profiling Module三種方法，整理成表格：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Handcrafting Method</th>
+<th>LLM-generation Method</th>
+<th>Dataset Alignment Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>簡介</strong></td>
+<td>手動設計代理的配置，包括人格特徵和職責。</td>
+<td>利用LLM自動生成代理配置，基於配置生成規則和少樣本示例。</td>
+<td>基於真實數據集或現有用戶行為數據來對齊代理行為，模擬真實世界的反應。</td>
+</tr>
+<tr>
+<td><strong>優點</strong></td>
+<td>靈活性強，可以根據需要分配任意配置。</td>
+<td>在處理大量代理時節省時間。</td>
+<td>基於真實數據生成代理行為，能夠反映現實情境，可信度高。</td>
+</tr>
+<tr>
+<td><strong>缺點</strong></td>
+<td>處理大量代理時，可能非常耗時且勞動密集。</td>
+<td>可能無法精確控制生成的配置。</td>
+<td>需要大量高質量的數據，且代理的靈活性受限於數據內容。</td>
+</tr>
+<tr>
+<td><strong>相關project</strong></td>
+<td>Generative Agent、MetaGPT、ChatDev、Self-collaboration 和 PTLLM</td>
+<td>RecAgent</td>
+<td>SocialSimulacra、GPT-3 和 Amercian National Election Studies (ANES)</td>
+</tr>
+</tbody>
+</table>
+<p>示範代碼</p>
+<p><strong>Handcrafting Method</strong></p>
+<pre><code class="language-python">from langchain.prompts import PromptTemplate
+from langchain.llms import OpenAI
+
+# 定義手工設計的代理角色和行為
+template = &quot;&quot;&quot;
+你是一位非常有經驗的軟體開發顧問，你需要幫助一個新手開發者設計一個簡單的聊天機器人。請具體描述設計過程的步驟。
+&quot;&quot;&quot;
+prompt = PromptTemplate(input_variables=[], template=template)
+
+llm = OpenAI(model=&quot;gpt-3.5-turbo&quot;) # 使用OpenAI作為LLM
+response = llm(prompt.format())
+print(response)
+</code></pre>
+<p><strong>LLM-generation Method</strong></p>
+<pre><code class="language-python">from langchain.prompts import FewShotPromptTemplate
+from langchain.llms import OpenAI
+
+# 定義少量範例來生成更多代理角色
+examples = [
+    {&quot;role&quot;: &quot;軟體開發者&quot;, &quot;behavior&quot;: &quot;你需要為一個簡單的網站設計後端邏輯&quot;},
+    {&quot;role&quot;: &quot;數據科學家&quot;, &quot;behavior&quot;: &quot;你需要分析一個銷售數據集，並找出關鍵趨勢&quot;}
+]
+
+# 定義 Few-shot Prompt
+example_formatter = lambda example: f&quot;角色: {example['role']}\n行為: {example['behavior']}\n&quot;
+template = FewShotPromptTemplate(
+    examples=examples,
+    example_prompt=example_formatter,
+    prefix=&quot;這裡有兩個不同的角色例子，請生成一個新的角色並描述其行為。&quot;,
+    input_variables=[&quot;role&quot;]
+)
+
+llm = OpenAI(model=&quot;gpt-3.5-turbo&quot;)
+new_role = &quot;系統管理員&quot;
+response = llm(template.format(role=new_role))
+print(response)
+</code></pre>
+<p><strong>Dataset Alignment Method</strong></p>
+<pre><code class="language-python">from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
+from langchain.llms import OpenAI
+import pandas as pd
+
+# 假設我們有一個數據集，包含不同年齡段的用戶及其喜歡的電影類型
+data = pd.DataFrame({
+    &quot;age_group&quot;: [&quot;18-25&quot;, &quot;26-35&quot;, &quot;36-50&quot;],
+    &quot;preferred_genre&quot;: [&quot;動作片&quot;, &quot;愛情片&quot;, &quot;紀錄片&quot;]
+})
+
+# 根據年齡段生成代理行為
+template = &quot;&quot;&quot;
+根據用戶的年齡段 {age_group}，請推薦他們可能喜歡的電影類型：{preferred_genre}。
+&quot;&quot;&quot;
+prompt = PromptTemplate(input_variables=[&quot;age_group&quot;, &quot;preferred_genre&quot;], template=template)
+
+llm = OpenAI(model=&quot;gpt-3.5-turbo&quot;)
+
+for index, row in data.iterrows():
+    chain = LLMChain(llm=llm, prompt=prompt)
+    response = chain.run({&quot;age_group&quot;: row['age_group'], &quot;preferred_genre&quot;: row['preferred_genre']})
+    print(response)
+</code></pre>
+<h3 id="2">2. 如何有效管理和調用代理的記憶與歷史數據？</h3>
+<p><img alt="agent_architecture" src="../images/0902/planning.png" /></p>
+<h3 id="planning-without-feedback">一、無反饋規劃 (Planning without Feedback)</h3>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>代表方法</th>
+<th>特點</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>單路徑推理</td>
+<td>Chain of Thought (CoT), Zero-shot-CoT, RePrompting, ReWOO, HuggingGPT</td>
+<td>將任務分解為幾個中間步驟，以級聯方式連接</td>
+<td>簡單直觀，易於實現；適合處理線性思維的任務</td>
+<td>缺乏靈活性，無法處理複雜任務；容易受到早期錯誤的影響</td>
+</tr>
+<tr>
+<td>多路徑推理</td>
+<td>Self-consistent CoT (CoT-SC), Tree of Thoughts (ToT), RecMind, Graph of Thoughts (GoT)</td>
+<td>步驟組織成樹狀結構，每個步驟可能有多個後續步驟</td>
+<td>更接近人類思維，能考慮多種可能性；適合複雜任務</td>
+<td>計算成本高，可能導致決策困難</td>
+</tr>
+<tr>
+<td>外部規劃器</td>
+<td>LLM+P, LLM-DP, CO-LLM</td>
+<td>利用外部規劃器生成計劃</td>
+<td>能利用高效規劃算法，適合特定領域的問題</td>
+<td>需要額外的轉換步驟，可能受限於外部規劃器的能力</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planning-with-feedback">二、有反饋規劃 (Planning with Feedback)</h3>
+<table>
+<thead>
+<tr>
+<th>反饋來源</th>
+<th>代表方法</th>
+<th>特點</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>環境反饋</td>
+<td>ReAct, Voyager, Ghost, SayPlan, DEPS, LLM-Planner, Inner Monologue</td>
+<td>從客觀世界或虛擬環境獲取反饋</td>
+<td>能適應動態變化的環境，更接近真實世界的解決方式</td>
+<td>需要設計環境模擬器，可能需要大量試錯過程</td>
+</tr>
+<tr>
+<td>人類反饋</td>
+<td>Inner Monologue</td>
+<td>直接與人類互動獲取反饋</td>
+<td>更好對齊人類價值觀，有助於緩解幻覺問題</td>
+<td>需要人類持續參與，成本高；可能受人類偏見影響</td>
+</tr>
+<tr>
+<td>模型反饋</td>
+<td>Self-refine, SelfCheck, InterAct, ChatCoT, Reflexion</td>
+<td>使用預訓練模型生成內部反饋</td>
+<td>不需外部資源，自主改進；提供詳細的語言反饋</td>
+<td>可能受模型局限性影響，難以引入新信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">結論</h3>
+<p>以目前開發架構，為了快速產生一個基礎架構，會先使用handcrafting method 搭配ReAct進行</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024 <a href="https://github.com/wu0up"  target="_blank" rel="noopener">Vivian Ou</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
